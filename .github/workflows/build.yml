@@ -87,11 +87,11 @@ jobs:
         rm -rf $ANDROID_ROOT/hybris/hybris-boot
         git clone https://github.com/sailfish-on-ginkgo/hybris-boot.git  $ANDROID_ROOT/hybris/hybris-boot --depth=1
         git clone --recurse-submodules https://github.com/sailfish-on-ginkgo/droid-hal-ginkgo.git $ANDROID_ROOT/rpm --depth=1
-        git clone --recurse-submodules https://github.com/sailfish-on-ginkgo/droid-config-ginkgo.git $ANDROID_ROOT/hybris/droid-configs --depth=1
-        git clone --recurse-submodules https://github.com/sailfish-on-ginkgo/droid-hal-version-ginkgo.git $ANDROID_ROOT/hybris/droid-hal-version-ginkgo --depth=1
-        git clone --recurse-submodules https://github.com/sailfish-on-ginkgo/hybris-installer $ANDROID_ROOT/hybris/hybris-installer --depth=1
-        rm -rf $ANDROID_ROOT/external/droidmedia
-        git clone https://github.com/sailfishos/droidmedia.git -b 0.20230605.1 $ANDROID_ROOT/external/droidmedia
+        # git clone --recurse-submodules https://github.com/sailfish-on-ginkgo/droid-config-ginkgo.git $ANDROID_ROOT/hybris/droid-configs --depth=1
+        # git clone --recurse-submodules https://github.com/sailfish-on-ginkgo/droid-hal-version-ginkgo.git $ANDROID_ROOT/hybris/droid-hal-version-ginkgo --depth=1
+        # git clone --recurse-submodules https://github.com/sailfish-on-ginkgo/hybris-installer $ANDROID_ROOT/hybris/hybris-installer --depth=1
+        # rm -rf $ANDROID_ROOT/external/droidmedia
+        # git clone https://github.com/sailfishos/droidmedia.git -b 0.20230605.1 $ANDROID_ROOT/external/droidmedia
         git clone --recurse-submodules  https://github.com/mer-hybris/libhybris.git $ANDROID_ROOT/external/libhybris
         cd $ANDROID_ROOT && hybris-patches/apply-patches.sh --mb
 
@@ -102,19 +102,19 @@ jobs:
         bash build-hal.sh
       shell: bash
 
-    - name: Build dhd in container
-      run: |
-        chmod +x build-rpm.sh
-        sudo docker pull coderus/sailfishos-platform-sdk:$SAILFISH_SDK_VERSION
-        sudo docker run -v /home/runner/work:/home/mersdk/work -v /proc/sys/fs/binfmt_misc:/proc/sys/fs/binfmt_misc \
-        coderus/sailfishos-platform-sdk:$SAILFISH_SDK_VERSION  /bin/sh /home/mersdk/work/ci/ci/build-rpm.sh
-      shell: bash
+    # - name: Build dhd in container
+    #   run: |
+    #     chmod +x build-rpm.sh
+    #     sudo docker pull coderus/sailfishos-platform-sdk:$SAILFISH_SDK_VERSION
+    #     sudo docker run -v /home/runner/work:/home/mersdk/work -v /proc/sys/fs/binfmt_misc:/proc/sys/fs/binfmt_misc \
+    #     coderus/sailfishos-platform-sdk:$SAILFISH_SDK_VERSION  /bin/sh /home/mersdk/work/ci/ci/build-rpm.sh
+    #   shell: bash
 
-    - name: Check free disk
-      if: failure()
-      run: |
-        df -h
-      shell: bash
+    # - name: Check free disk
+    #   if: failure()
+    #   run: |
+    #     df -h
+    #   shell: bash
 
     - name : Upload boot image
       uses: actions/upload-artifact@master
@@ -122,8 +122,8 @@ jobs:
         name: hybris-boot.img.zip
         path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/hybris-boot.img
 
-    - name : Upload droid-local-repo
-      uses: actions/upload-artifact@master
-      with:
-        name: droid-local-repo.zip
-        path: ${{env.ANDROID_ROOT}}/droid-local-repo
+    # - name : Upload droid-local-repo
+    #   uses: actions/upload-artifact@master
+    #   with:
+    #     name: droid-local-repo.zip
+    #     path: ${{env.ANDROID_ROOT}}/droid-local-repo
