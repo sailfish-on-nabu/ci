@@ -63,10 +63,10 @@ jobs:
         sudo rm -rf "/usr/local/share/boost"||true
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"||true
 
-        sudo mkdir -p /mnt/out
+        sudo mkdir -p /mnt/platform
         mkdir -p /home/runner/work/ci/ci/hadk_18.1/
-        sudo chown -R runner /mnt/out
-        sudo ln -s /mnt/out /home/runner/work/ci/ci/hadk_18.1/out
+        sudo chown -R runner /mnt/platform
+        sudo ln -s /mnt/platform /home/runner/work/ci/ci/hadk_18.1/platform
         
     - name: Checkout
       uses: actions/checkout@master
