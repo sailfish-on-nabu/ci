@@ -22,4 +22,6 @@ cd $ANDROID_ROOT
 ./hybris-patches/apply-patches.sh --mb
 mkdir -p out/host/linux-x86/bin/
 cp ./prebuilts/misc/linux-x86/libufdt/mkdtimg out/host/linux-x86/bin/mkdtimg
+
+export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
 make -j$(nproc --all) hybris-hal droidmedia
