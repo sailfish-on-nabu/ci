@@ -64,6 +64,7 @@ jobs:
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"||true
 
         sudo mkdir -p /mnt/out
+        mkdir -p /home/runner/work/ci/ci/hadk_18.1/out
         sudo ln -s /mnt/out /home/runner/work/ci/ci/hadk_18.1/out
         sudo chown -R $whoami /mnt/out
         
