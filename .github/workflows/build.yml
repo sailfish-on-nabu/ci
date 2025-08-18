@@ -64,10 +64,9 @@ jobs:
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"||true
 
         sudo mkdir -p /mnt/out
-        mkdir -p /home/runner/work/ci/ci/hadk_18.1/out
+        mkdir -p /home/runner/work/ci/ci/hadk_18.1/
+        sudo chown -R runner /mnt/out
         sudo ln -s /mnt/out /home/runner/work/ci/ci/hadk_18.1/out
-        id
-        #sudo chown -R $whoami /mnt/out
         
     - name: Checkout
       uses: actions/checkout@master
@@ -120,6 +119,7 @@ jobs:
         git clone --recurse-submodules  https://github.com/mer-hybris/libhybris.git $ANDROID_ROOT/external/libhybris
         cd $ANDROID_ROOT && hybris-patches/apply-patches.sh --mb
 
+    
     - name: Build HAL
       run: |
         chmod +x build-hal.sh
