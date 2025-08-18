@@ -12,6 +12,12 @@ on:
   push:
     branches: 
       - master
+  workflow_dispatch:
+      inputs:
+        name:
+          description: 'trigger build'
+          required: true
+          default: 'Do it'
 
 jobs:
 
