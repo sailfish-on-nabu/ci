@@ -131,6 +131,7 @@ jobs:
           git config --global user.name "Github Actions"
 
           # 快速恢复工作区
+          mkdir -p $ANDROID_ROOT
           cd $ANDROID_ROOT
           python3 ~/bin/repo sync -l # 仅从本地.repo恢复文件，极快
           
