@@ -140,7 +140,7 @@ jobs:
           git clone https://github.com/sailfish-on-nabu/android_vendor_xiaomi_nabu.git $ANDROID_ROOT/vendor/xiaomi/nabu --depth=1 --single-branch
           git clone https://github.com/sailfish-on-nabu/android_kernel_xiaomi_nabu.git $ANDROID_ROOT/kernel/xiaomi/sm8150 --depth=1 --single-branch
           rm -rf $ANDROID_ROOT/hybris/hybris-boot
-          git clone https://github.com/sailfish-on-nabu/hybris-boot.git -b nabu-fixup-mountpoints $ANDROID_ROOT/hybris/hybris-boot --depth=1
+          git clone https://github.com/sailfish-on-nabu/hybris-boot.git $ANDROID_ROOT/hybris/hybris-boot --depth=1
 
           cd ${{ github.workspace }}
           sudo ln -sf /usr/bin/python2.7 /usr/bin/python
