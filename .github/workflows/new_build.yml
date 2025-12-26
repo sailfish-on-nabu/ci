@@ -59,7 +59,6 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ~/bin/repo
             ${{ env.ANDROID_ROOT }}/.repo
           key: ${{ runner.os }}-android-repo-${{ github.sha }}
           restore-keys: |
@@ -111,7 +110,6 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ~/bin/repo
             ${{ env.ANDROID_ROOT }}/.repo
           key: ${{ runner.os }}-android-repo-${{ github.sha }}
 
@@ -126,7 +124,10 @@ jobs:
           libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zip zlib1g-dev \
           qemu-user-static qemu-system-arm e2fsprogs simg2img \
           libtinfo5 libncurses5 gzip virtualenv git python2
-          
+
+          mkdir -p ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
           git config --global user.email "ci@github.com"
           git config --global user.name "Github Actions"
 
